@@ -71,8 +71,7 @@ public class HttpServer {
                         String methodParam = clas.split(",")[3];
                         Class<?> c = Class.forName(className);
                         Method m = c.getMethod(methodName, (Class<?>) tipo(methodType));
-                        System.out.println(cast(methodType, methodParam));
-                        System.out.println(m.invoke(null, cast(methodType, methodParam)));
+                        outputLine = methodsHtml(m.invoke(null, cast(methodType, methodParam)));
                     }
                 }
                 if (!in.ready()) {
@@ -147,13 +146,17 @@ public class HttpServer {
     private static Class tipo(String s){
         if(Objects.equals(s, "int")){
             return int.class;
+        }else if(Objects.equals(s, "double")){
+            return double.class;
         }
         return Character.TYPE;
     }
 
     private static Object cast(String s, String param){
         if(Objects.equals(s, "int")){
-            return Integer.getInteger(param);
+            return Integer.parseInt(param);
+        }else if(Objects.equals(s, "double")){
+            return Double.valueOf(param);
         }
         return Character.TYPE;
     }
