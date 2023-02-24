@@ -148,6 +148,8 @@ public class HttpServer {
             return int.class;
         }else if(Objects.equals(s, "double")){
             return double.class;
+        }else if(Objects.equals(s, "float")){
+            return float.class;
         }
         return Character.TYPE;
     }
@@ -157,6 +159,8 @@ public class HttpServer {
             return Integer.parseInt(param);
         }else if(Objects.equals(s, "double")){
             return Double.valueOf(param);
+        }else if(Objects.equals(s, "float")){
+            return Float.valueOf(param);
         }
         return Character.TYPE;
     }
