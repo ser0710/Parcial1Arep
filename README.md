@@ -2,7 +2,7 @@
 
 ## Metodos probados:
 
-Class(java.lang.Math9
+Class(java.lang.Math)
 
 Invoke(java.lang.Math,random)
 
