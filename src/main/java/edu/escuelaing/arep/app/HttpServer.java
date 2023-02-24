@@ -72,6 +72,17 @@ public class HttpServer {
                         Class<?> c = Class.forName(className);
                         Method m = c.getMethod(methodName, (Class<?>) tipo(methodType));
                         outputLine = methodsHtml(m.invoke(null, cast(methodType, methodParam)));
+                    }else if(inputLine.contains("binaryInvoke")){
+                        clas = inputLine.split("=")[1].split(" ")[0].replace("binaryInvoke(", "").replace(")", "");
+                        String className = clas.split(",")[0];
+                        String methodName = clas.split(",")[1];
+                        String paramType1 = clas.split(",")[2];
+                        String param1 = clas.split(",")[3];
+                        String paramType2 = clas.split(",")[4];
+                        String param2 = clas.split(",")[5];
+                        Class<?> c = Class.forName(className);
+                        Method m = c.getMethod(methodName, tipo(paramType1), tipo(paramType2));
+                        outputLine = methodsHtml(m.invoke(null, cast(paramType1, param1), cast(paramType2, param2)));
                     }
                 }
                 if (!in.ready()) {
